@@ -4,7 +4,7 @@ class Database:
     
     def add_data(self,name,email,password):
 
-        with open('db.json','r') as rf:
+        with open(' db.json','r') as rf:
             database = json.load(rf)
 
         if email in database:
