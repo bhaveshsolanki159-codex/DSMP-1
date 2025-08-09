@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from data import Database
 # render_template -> load html file
 # request -> receive a data
@@ -30,4 +30,28 @@ def perform_registration():
     
     return name + " " + email + " " + password
 
+@app.route('/perform_login', methods=['post'])
+def perform_login():
+    email = request.form.get('user_ka_email')
+    password = request.form.get('user_ka_password') 
+
+    response = db.search(email,password)
+
+    if response:
+        return redirect('/profile')
+    else:
+        return render_template('login.html', message ='Incorrect Email Password')
+    
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+@app.route('/ner')
+def ner():
+    return render_template('ner.html')
+
+@app.route('/perform_ner', methods=["post"])
+def perform_ner():
+    text = request.form.get("user_text")
+    
 app.run(debug=True) #no need to run again and again due to debug
