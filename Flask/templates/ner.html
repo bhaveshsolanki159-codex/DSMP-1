@@ -13,5 +13,12 @@
     <input type="submit">
 </form>
 
+{% if response %}
+    {% for i in response['entities']: %}
+        <p>{{ i['name'] + " ==> " + i['category'] }}</p>
+    {% endfor %}
+  {% endif %}
+
+
 </body>
 </html>

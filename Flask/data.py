@@ -1,6 +1,7 @@
 import json
 
 class Database:
+
     def insert(self,name,email,password):
         with open('Flask/user.json','r') as rf:
             users = json.load(rf)
@@ -10,10 +11,10 @@ class Database:
             else:
                 users[email] = [name,password]
 
-        with open("Flask/user.json",'w') as wf:
+        with open('Flask/user.json','w') as wf:
             json.dump(users,wf,indent=4)
             return 1
-        
+
     def search(self,email,password):
         with open('Flask/user.json','r') as rf:
             users = json.load(rf)
